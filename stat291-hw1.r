@@ -1,4 +1,5 @@
 # QUESTION 1
+
 # Create the following matrix in R.
 ## [,1] [,2] [,3]
 ## [1,] 2.91 1.09 3.420
@@ -31,7 +32,7 @@ log(q1_matrix)
 
 # Round off the elements of the matrix given in part (e) up to 2 digits. Assign the name log_mat to the resulted matrix. Then print log_mat.
 log_mat <- round(log(q1_matrix), 2)
-print(log_mat)
+log_mat
 
 # Take the transpose of the matrix in part (f).
 t(log_mat)
