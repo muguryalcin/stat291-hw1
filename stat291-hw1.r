@@ -1,25 +1,42 @@
 # QUESTION 1
-q1_matrix <- matrix(rbind(c(2.91,1.09,3.420),
-                         c(0.70,0.50,2.330),
-                         c(0.09,0.32,1.220),
-                         c(1.25,2.00,2.333),
-                         c(1.01,1.98,0.340)),nrow=5,ncol=3)
+# Create the following matrix in R.
+## [,1] [,2] [,3]
+## [1,] 2.91 1.09 3.420
+## [2,] 0.70 0.50 2.330
+## [3,] 0.09 0.32 1.220
+## [4,] 1.25 2.00 2.333
+## [5,] 1.01 1.98 0.340
+
+q1_matrix <- matrix(rbind(
+    c(2.91, 1.09, 3.420),
+    c(0.70, 0.50, 2.330),
+    c(0.09, 0.32, 1.220),
+    c(1.25, 2.00, 2.333),
+    c(1.01, 1.98, 0.340)
+), nrow = 5, ncol = 3)
+q1_matrix
+
+# Assign the names of the columns of the matrix given in part a) as "COL1", "COL2", and "COL3", respectively. Then print the new matrix.
 colnames(q1_matrix) <- c("COL1", "COL2", "COL3") # Setting column names
-print(q1_matrix) # Printing the matrix
+q1_matrix
+
+# Select the element in the 1st column and 5th row of the matrix given in part a.
 q1_matrix[5, 1] # 1st column of 5th row
+
+# Select the elements in the 2nd column of the matrix given in part a.
 q1_matrix[, 2] # 2nd column
 
-# Taking the natural log of all elements in the matrix
+# Take the natural logarithm of the elements of this matrix.
 log(q1_matrix)
 
-# Round the matrix to 2 decimal places
+# Round off the elements of the matrix given in part (e) up to 2 digits. Assign the name log_mat to the resulted matrix. Then print log_mat.
 log_mat <- round(log(q1_matrix), 2)
 print(log_mat)
 
-# Transpose the matrix
+# Take the transpose of the matrix in part (f).
 t(log_mat)
 
-# Multiply log_mat by the transpose of log_mat
+# Multiply the matrix in part (f) with the one you obtained in part (g).
 log_mat %*% t(log_mat)
 
 # Create a new square matrix (named sqr_mat) by omitting the third and fourth rows of the matrix given in part a. Print sqr_mat.
@@ -27,7 +44,7 @@ sqr_mat <- q1_matrix[-c(3, 4), ]
 sqr_mat
 
 # Multiply the matrix given in part (i) with its inverse. Round the elements of the resulted matrix up to 2 digits.
-solve(sqr_mat) %*% sqr_mat
+round(solve(sqr_mat) %*% sqr_mat,2)
 
 # Change the number in the 1st row and 1st column of the matrix in part a with the value 3.1. Print the matrix again.
 q1_matrix[1, 1] <- 3.1
@@ -72,7 +89,6 @@ my_object[c(1, 3)]
 
 # Change the numbers in the first column of the mymat object as follows: (1,2,3)
 my_object$mymat[, 1] <- c(1, 2, 3)
-
 my_object
 
 # QUESTION 3
@@ -98,8 +114,8 @@ age_data <- c(47, 56, 46, 70, 82, 32, 45, 39, 21, 18, 27, 58)
 weight_data <- c(119, 76, 53, 58, 65, 43, 95, 56, 71, 42, 61, 72)
 sex_data <- c("M", "M", "M", "M", "M", "F", "F", "F", "F", "F", "F", "F")
 tobacco_data <- c("Y", "Y", "Y", "Y", "N", "N", "N", "N", "N", "N", "N", "N")
-data <- data.frame(age = age_data, weight = weight_data, sex = sex_data, tobacco_data = tobacco_data)
-
+data <- data.frame(age = age_data, weight = weight_data, sex = sex_data, tobacco = tobacco_data)
+data
 # Check the dimension of your data.
 dim(data)
 
@@ -107,11 +123,17 @@ dim(data)
 class(data$age)
 
 # Create a new data frame including only sex and tobacco. Print the resulted data frame.
-data2 <- data[, c(3, 4)]
+data2 <- data[, c("sex", "tobacco")]
 data2
 
 # Pick the subjects with "age" higher than or equal to 47 in this data set.
 data[data$age >= 47, ]
 
 # Pick the observations for male subjects only.
-data[data$sex == "M", ]
+data[data$sex == "M",  ]
+
+# Obtain the weight and age information for subjects whose ages are higher than the mean age.
+data[data$age > mean(data$age), c("weight", "age")]
+
+# Pick only the "age" values of the subjects that have "weight" less than or equal to 82, and "tobacco"="Y" in this data set.
+data[data$weight <= 82 & data$tobacco == "Y", "age"]
